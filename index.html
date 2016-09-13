@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Carl-Johan Backman">
+
+  <title>hpbil.se</title>
+
+  <link href="vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="vendors/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+  
+</head>
+<body>
+
+  <!-- Logo -->
+  <div class="container" id="wrapper-logo">
+    <div class="row">
+      <div class="col-md-12">
+        <img src="../assets/img/white_logo.jpg" style="float: left;">
+        <p style="float: right;">Bilhallen idag: <span id="opening-hrs"></span></p>
+      </div>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+
+  <!-- Menu -->
+  <div class="container" id="menu">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="active"><a href="#" data-page="start">HEM</a></li>
+      <li><a href="#" data-page="cars">KÖPA BIL</a></li>
+      <li><a href="#" data-page="rent">HYRA BIL</a></li>
+      <li><a href="#" data-page="contact">KONTAKT</a></li>
+    </ul>
+  </div>
+
+  <!-- This is where all the content is shown -->
+  <div class="container" id="main"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted text-center">070 - 691 30 50 / <a href="mailto:hans@hpbil.se">hans@hpbil.se</a> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> &copy; HP Bil i Hede AB <span id="year"></span> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Följ oss på <a href="https://www.facebook.com/HPbil" target="_blank">Facebook</a>!</p>
+    </div>
+  </footer>
+
+
+  <script src="vendors/jquery/jquery-1.12.1.min.js"></script>
+  <script src="vendors/d3/d3.min.js" charset="utf-8"></script>
+  <script src="vendors/topojson/topojson.v1.min.js"></script>
+  <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+  <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
+  <script src="assets/js/script.js"></script>
+
+  <script>
+    $("#year").text(new Date().getFullYear()); //Add current year to copywrite
+    $("#opening-hrs").css("color", isWeekend() ? "#b20000" : "green"); //Set apporpriate color to opening hrs
+    $("#opening-hrs").text(getOpeningHours()); //Add opening hours
+
+    requestContent("#main", "start"); //Load first page
+    
+    // Add event listener that changes the page
+    $("#menu a").on("click", function (d) {
+
+      var page = this.getAttribute("data-page"); //Get name
+
+      $("#menu .active").removeClass(); //Make old link no active
+      $(this).parent().addClass("active"); //Make new link active
+
+      requestContent("#main", page); //Load content
+    });
+
+
+  </script>
+
+</body>
+</html>
