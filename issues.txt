@@ -1,7 +1,0 @@
-Mobile
-- Fix menu
-- Fix all pages so they look nice
-
-General
-- Update URL
-- Upload function
