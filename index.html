@@ -1,79 +1,76 @@
 <!DOCTYPE html>
-<html ng-app="ShowRoom">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Carl-Johan Backman">
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-  <title>hpbil.se</title>
+    <title>HP Bil</title>
 
-  <link href="vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="vendors/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
-  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-  
-</head>
-<body>
+    <!-- Vendor CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
-  <!-- Logo -->
-  <div class="container" id="wrapper-logo">
-    <div class="row">
-      <div class="col-md-12">
-        <img src="../assets/img/white_logo.jpg" style="float: left;">
-        <p style="float: right;">Bilhallen idag: <span id="opening-hrs"></span></p>
-      </div>
-    </div>
-  </div>
-  <div style="clear: both;"></div>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-  <!-- Menu -->
-  <div class="container" id="menu">
-    <ul class="nav nav-tabs nav-justified">
-      <li class="active"><a href="#" data-page="start">HEM</a></li>
-      <li><a href="#" data-page="cars">KÖPA BIL</a></li>
-      <li><a href="#" data-page="rent">HYRA BIL</a></li>
-      <li><a href="#" data-page="contact">KONTAKT</a></li>
-    </ul>
-  </div>
+    <!-- Custom styles for this template -->
+    <link href="assets/css/sticky-footer.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- This is where all the content is shown -->
-  <div class="container" id="main"></div>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <body ng-app="hpApp">
+
+    <!-- Begin page content -->
     <div class="container">
-      <p class="text-muted text-center"><span class="pull-left">070 - 691 30 50 / <a href="mailto:hans@hpbil.se">hans@hpbil.se</a></span> &copy; HP Bil i Hede AB <span id="year"></span> <span class="pull-right">Följ oss på <a href="https://www.facebook.com/HPbil" target="_blank">Facebook</a>!</span></p>
+      <div class="page-header">
+	      	<a href="/"><img src="assets/img/white_logo.jpg"></a>
+	      	<div class="btn-group pull-right">
+		        <a href="#!/buy" class="btn btn-success" role="button">Köp bil</a>
+		        <a href="#!/rent" class="btn btn-warning" role="button">Hyr bil</a>
+	        </div>	
+      </div>
+      <!--<p class="lead">Lite text</p>-->
+      <div class="content-wrapper" ng-view></div>
     </div>
-  </footer>
 
+    <footer class="footer">
+      <div class="container">
+      	<div class="row">
+      		<div class="col-xs-4">
+				<span class="bold">Besöksadress</span><br>
+				<i class="fa fa-map-marker"></i> <a href="https://goo.gl/maps/x7otSeuzr5r" target="_blank">Helagsgatan 2<br>
+				842 33 Sveg</a>
+      		</div>
+      		<div class="col-xs-4">
+      			<span class="bold">Kontakt</span><br>
+				<i class="fa fa-phone"></i> 070 - 691 30 50<br>
+				<i class="fa fa-envelope"></i> <a href="mailto:hans@hpbil.se">hans@hpbil.se</a><br>
+				<i class="fa fa-facebook"></i> <a href="https://www.facebook.com/HPbil/" target="_blank">HP Bil på Facebook</a>
+      		</div>
+      		<div class="col-xs-4">
+				<span class="bold">Fakturaadress</span><br>
+				Levigatan 19<br>
+				840 93 Hede
+      		</div>
+      	</div>	
+      </div>
+    </footer>
 
-  <script src="vendors/jquery/jquery-1.12.1.min.js"></script>
-  <script src="vendors/d3/d3.min.js" charset="utf-8"></script>
-  <script src="vendors/topojson/topojson.v1.min.js"></script>
-  <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
-  <script src="vendors/jquery-ui/jquery-ui.min.js"></script>
-  <script src="assets/js/script.js"></script>
-
-  <script>
-    $("#year").text(new Date().getFullYear()); //Add current year to copywrite
-    $("#opening-hrs").css("color", isWeekend() ? "#b20000" : "green"); //Set apporpriate color to opening hrs
-    $("#opening-hrs").text(getOpeningHours()); //Add opening hours
-
-    requestContent("#main", "start"); //Load first page
-    
-    // Add event listener that changes the page
-    $("#menu a").on("click", function (d) {
-
-      var page = this.getAttribute("data-page"); //Get name
-
-      $("#menu .active").removeClass(); //Make old link no active
-      $(this).parent().addClass("active"); //Make new link active
-
-      requestContent("#main", page); //Load content
-    });
-
-
-  </script>
-
-</body>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>
