@@ -18,9 +18,16 @@ function loginService ($http) {
 };
 
 function buyService ($http) {
-	$http.get("../../backend/getCars.php")
-	.then(function (response) {
-		var data = response;
-		return data;
-	});
+	return {
+		getCars: function () {
+			return $http.get("../../backend/getCars.php")
+				.then(function (response) {
+					return response;
+			});
+		}
+	}
 };
+
+angular.module("app.services", [])
+.factory("BuyService", buyService)
+.factory("LoginService", loginService);

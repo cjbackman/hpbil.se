@@ -4,25 +4,19 @@ header("Content-Type: application/json; charset=UTF-8");
 
 $config = include('config.php');
 
-$conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
+$conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database']) 
+    or die('{"error": "Failed to connect." ' . mysqli_error($conn) . '}');
 
-$result = $conn->query("SELECT id, brand, model, year, milage, color, price, misc, created_on FROM cars");
+$sql = "SELECT * FROM cars";
 
-$outp = "";
-while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-    if ($outp != "") {$outp .= ",";}
-    $outp .= '{"id":"'  . $rs["id"] . '",';
-    $outp .= '"brand":"'   . $rs["brand"]        . '",';
-    $outp .= '"model":"'   . $rs["model"]        . '",';
-    $outp .= '"year":"'   . $rs["year"]        . '",';
-    $outp .= '"milage":"'   . $rs["milage"]        . '",';
-    $outp .= '"color":"'   . $rs["color"]        . '",';
-    $outp .= '"price":"'   . $rs["price"]        . '",';
-    $outp .= '"misc":"'   . $rs["misc"]        . '",';
-    $outp .= '"created_on":"'   . $rs["created_on"]        . '"}';
+$result = mysqli_query($conn, $sql) or die('{"error": "Failed to query." ' . mysqli_error($conn) . '}');
+
+$rows = array();
+while($row = mysqli_fetch_assoc($result))
+{
+    $rows[] = array_map('utf8_encode', $row);
 }
-$outp ='{"data":['.$outp.']}';
-$conn->close();
 
-echo($outp);
+echo json_encode($rows);
+mysqli_close($conn);
 ?>

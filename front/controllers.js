@@ -11,7 +11,5 @@ function loginController ($scope, $rootScope, $stateParams, $state, LoginService
   };
 };
 
-function buyController ($scope, BuyService) {
-    var data = BuyService();
-    console.log(data);
-};
+angular.module("app.controllers", [])
+.controller("LoginController", loginController);
