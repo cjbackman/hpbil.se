@@ -1,14 +1,24 @@
-
 var app = angular.module("hpApp", ["ngRoute"]);
+
+app.controller("buyController", buyController);
+app.controller("loginController", loginController);
+app.factory("LoginService", loginService);
+app.factory("BuyService", buyService);
+
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "assets/views/start.html"
+        templateUrl : "front/views/start.html",
     })
     .when("/buy", {
-        templateUrl : "assets/views/buy.html"
+        templateUrl : "front/views/buy.html",
+        controller: "buyController"
     })
     .when("/rent", {
-        templateUrl : "assets/views/rent.html"
+        templateUrl : "front/views/rent.html"
     })
-});
+    .when("/login", {
+        templateUrl: "front/views/login.html",
+        controller: "loginController"
+    })
+}); 

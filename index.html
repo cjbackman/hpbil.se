@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>HP Bil</title>
+    <title>HP BIL</title>
 
     <!-- Vendor CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,6 @@
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="assets/css/sticky-footer.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,33 +34,29 @@
     <div class="container">
       <div class="page-header">
 	      	<a href="/"><img src="assets/img/white_logo.jpg"></a>
-	      	<div class="btn-group pull-right">
-		        <a href="#!/buy" class="btn btn-success" role="button">Köp bil</a>
-		        <a href="#!/rent" class="btn btn-warning" role="button">Hyr bil</a>
-	        </div>	
+		      <a href="#!/buy" class="btn btn-success" role="button" style="font-size: 25px;">Köp bil</a>
+		      <a href="#!/rent" class="btn btn-warning" role="button" style="font-size: 25px;">Hyr bil</a>
+          <span style="float:right;">
+            <i class="fa fa-phone"></i> 070 - 691 30 50<br>
+            <i class="fa fa-envelope"></i> <a href="mailto:hans@hpbil.se">hans@hpbil.se</a><br>
+            <i class="fa fa-facebook"></i> <a href="https://www.facebook.com/HPbil/" target="_blank">HP Bil på Facebook</a>
+          </span>
       </div>
-      <!--<p class="lead">Lite text</p>-->
       <div class="content-wrapper" ng-view></div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer" name="contact">
       <div class="container">
       	<div class="row">
-      		<div class="col-xs-4">
-				<span class="bold">Besöksadress</span><br>
-				<i class="fa fa-map-marker"></i> <a href="https://goo.gl/maps/x7otSeuzr5r" target="_blank">Helagsgatan 2<br>
-				842 33 Sveg</a>
+      		<div class="col-xs-4 col-xs-offset-2">
+    				<span class="bold">Besöksadress</span><br>
+    				<i class="fa fa-map-marker"></i> <a href="https://goo.gl/maps/x7otSeuzr5r" target="_blank">Helagsgatan 2<br>
+    				842 33 Sveg</a>
       		</div>
       		<div class="col-xs-4">
-      			<span class="bold">Kontakt</span><br>
-				<i class="fa fa-phone"></i> 070 - 691 30 50<br>
-				<i class="fa fa-envelope"></i> <a href="mailto:hans@hpbil.se">hans@hpbil.se</a><br>
-				<i class="fa fa-facebook"></i> <a href="https://www.facebook.com/HPbil/" target="_blank">HP Bil på Facebook</a>
-      		</div>
-      		<div class="col-xs-4">
-				<span class="bold">Fakturaadress</span><br>
-				Levigatan 19<br>
-				840 93 Hede
+    				<span class="bold">Fakturaadress</span><br>
+    				Levigatan 19<br>
+    				840 93 Hede
       		</div>
       	</div>	
       </div>
@@ -71,6 +66,8 @@
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="front/services.js"></script>
+    <script src="front/controllers.js"></script>
     <script src="assets/js/app.js"></script>
   </body>
 </html>
