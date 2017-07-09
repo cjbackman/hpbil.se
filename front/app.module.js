@@ -1,7 +1,11 @@
 var app = angular.module("app", [
-	"ngRoute", 
+	"ui.router",
+	"ngStorage", 
 	"app.config", 
 	"app.controllers", 
 	"app.services", 
-	"cars.module"]);
+	"cars.module",
+	"login.module",
+	"admin.module"
+]);
 

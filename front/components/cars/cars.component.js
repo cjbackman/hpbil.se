@@ -1,22 +1,32 @@
 (function () {
-	var controller = function (BuyService) {
+	var controller = function ($state, CarService) {
 		var ctrl = this;
 
 		ctrl.$onInit = function () {
-			BuyService.getCars().then(function (resp) {
+			CarService.getCars().then(function (resp) {
 		      ctrl.cars = resp.data;
+		      if (ctrl.id) {
+		      	ctrl.selectedCar = ctrl.cars.filter(function (c) { return c.id === ctrl.id })[0];
+		      }
 		    });
+		};
+
+		ctrl.selectCar = function (id) {
+			$state.go('car', { id: id });
 		};
 
 	};
 
-	controller.$inject = ['BuyService'];
+	controller.$inject = ['$state', 'CarService'];
 
 	var component = {
 		controller: controller,
+		bindings: {
+			id: "<"
+		},
 		templateUrl: 'front/components/cars/cars.html'
 	};
 
-	angular.module("cars.module", ["car.module"])
+	angular.module("cars.module", ["car.module", "carDetail.module"])
 		.component("cars", component);
 })()

@@ -50,13 +50,13 @@
             </div>
           </div>
       </div>
-      <div class="content-wrapper" ng-view></div>
+      <div class="content-wrapper" ui-view></div>
     </div>
 
     <footer class="footer" name="contact">
       <div class="container">
       	<div class="row">
-      		<div class="col-xs-4 col-xs-offset-2">
+      		<div class="col-xs-5 col-xs-offset-1">
     				<span class="bold">Besöksadress</span><br>
     				<i class="fa fa-map-marker"></i> <a href="https://goo.gl/maps/x7otSeuzr5r" target="_blank">Helagsgatan 2<br>
     				842 33 Sveg</a>
@@ -72,13 +72,19 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <!-- Scripts -->
     <script src="front/services.js"></script>
     <script src="front/controllers.js"></script>
     <script src="front/app.module.js"></script>
     <script src="front/app.config.js"></script>
     <script src="front/components/car/car.component.js"></script>
     <script src="front/components/cars/cars.component.js"></script>
+    <script src="front/components/carDetail/carDetail.component.js"></script>
+    <script src="front/components/login/login.component.js"></script>
+    <script src="front/components/admin/admin.component.js"></script>
   </body>
 </html>

@@ -5,8 +5,13 @@
 
 <div class="col-md-12">
 	<h2>Begagnade bilar</h2>
+
+	<div class="row selectedCar">
+		<car-detail car="$ctrl.selectedCar"></car-detail>
+	</div>
+
 	<div class="row">
-		<div class="col-md-3 col-xs-6" ng-repeat="car in $ctrl.cars">
+		<div class="col-md-3 col-xs-6 car" ng-repeat="car in $ctrl.cars" ng-click="$ctrl.selectCar(car.id)">
 			<car car="car"></car>
 		</div>
 	</div>

@@ -1,18 +1,36 @@
-var config = function($routeProvider) {
-    $routeProvider
-    .when("/", {
-        templateUrl : "front/views/start.html",
+var config = function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/");
+
+    $stateProvider
+    .state("start", {
+        url: "/",
+        templateUrl: "front/views/start.html"
     })
-    .when("/buy", {
-        template: '<cars></cars>'
+    .state("cars", {
+        url: "/cars",
+        component: "cars"
     })
-    .when("/rent", {
-        templateUrl : "front/views/rent.html"
+    .state("car", {
+        url: "/cars/:id",
+        component: "cars",
+        resolve: {
+            id: function ($stateParams) {
+                return $stateParams.id;
+            }
+        }
     })
-    .when("/login", {
-        templateUrl: "front/views/login.html",
-        controller: "LoginController"
+    .state("rent", {
+        url: "rent",
+        templateUrl: "front/views/rent.html"
     })
+    .state("login", {
+        url: "/login",
+        component: "login"
+    })
+    .state("admin", {
+        url: "/admin",
+        component: "admin"
+    });
 }
 
 angular.module("app.config", []).config(config);
