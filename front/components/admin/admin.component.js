@@ -14,9 +14,8 @@
 			});
 		};
 
-		ctrl.logOut = function () {
+		ctrl.logout = function () {
 			AuthService.Logout();
-			$state.go("start");
 		};
 	};
 
