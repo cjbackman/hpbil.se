@@ -1,34 +1,36 @@
-function loginService($http, $localStorage, $state) {
+function authService($http, $localStorage, $state) {
     var service = {};
 
     service.Login = Login;
     service.Logout = Logout;
+    service.isValid = isValid;
 
     return service;
 
     function Login(username, password) {
-        $http.post('../../backend/auth.php', { username: username, password: password })
-            .success(function (response) {
-                // login successful if there's a token in the response
-                if (response.token) {
-                    // store username and token in local storage to keep user logged in between page refreshes
-                    $localStorage.currentUser = { username: username, token: response.token };
+    	//console.log("loggin in");
 
-                    // add jwt token to auth header for all requests made by the $http service
-                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
-
+        return $http.post('../../backend/auth.php', { username: username, password: password })
+            .then(function (response) {
+                if (response.data.token) {
+                    $localStorage.currentUser = { username: username, token: response.data.token };
                     $state.go("admin");
 
                 } else {
-                    return response;
+                    return response.data;
                 }
             });
     }
 
     function Logout() {
-        // remove user from local storage and clear http auth header
         delete $localStorage.currentUser;
-        $http.defaults.headers.common.Authorization = '';
+    }
+
+    function isValid() {
+    	return $http.get('../../backend/isValid.php')
+    		.then(function (response) {
+    			return response;
+    		});
     }
 }
 
@@ -49,4 +51,4 @@ function carService ($http) {
 
 angular.module("app.services", [])
 .factory("CarService", carService)
-.factory("LoginService", loginService);
+.factory("AuthService", authService);

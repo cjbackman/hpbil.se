@@ -1,16 +1,18 @@
 (function () {
-	var controller = function ($state, LoginService) {
+	var controller = function ($state, AuthService) {
 		var ctrl = this;
 
-		ctrl.formSubit = function () {
-			LoginService.Login($ctrl.username, $ctrl.password)
+		ctrl.formSubmit = function () {
+			AuthService.Login(ctrl.username, ctrl.password)
 			.then(function (response) {
-				console.log(response);
+				if (response && response.error) {
+					ctrl.error = response.error;
+				}
 			});
 		};
 	};
 
-	controller.$inject = ['$state', 'LoginService'];
+	controller.$inject = ['$state', 'AuthService'];
 
 	var component = {
 		controller: controller,

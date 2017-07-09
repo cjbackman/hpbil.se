@@ -1,4 +1,4 @@
-var config = function($stateProvider, $urlRouterProvider) {
+var config = function($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
@@ -30,6 +30,18 @@ var config = function($stateProvider, $urlRouterProvider) {
     .state("admin", {
         url: "/admin",
         component: "admin"
+    });
+
+    $httpProvider.interceptors.push(function($localStorage) {
+        return {
+            'request': function(config) {
+                console.log("req");
+                if ($localStorage.currentUser) {
+                    config.headers['Authorization'] = $localStorage.currentUser.token;
+                }
+                return config;
+            }
+        };
     });
 }
 
