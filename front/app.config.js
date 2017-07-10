@@ -44,4 +44,5 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider) {
     });
 }
 
-angular.module("app.config", []).config(config);
+angular.module("app.config", [])
+.config(config);

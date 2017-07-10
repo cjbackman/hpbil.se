@@ -26,7 +26,7 @@ function authService($http, $localStorage, $state) {
 
     function Logout() {
         delete $localStorage.currentUser;
-        $state.go("start");
+        $state.go("login");
     }
 
     function isValid() {
