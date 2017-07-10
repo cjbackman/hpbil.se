@@ -54,6 +54,26 @@ function carService ($http) {
                 return error;
             });
 	};
+
+    function delCar (id) {
+        return $http.post("../../api/delCar.php", {id: id})
+            .then(function (response) {
+                return response;
+            }).catch(function (error) {
+                return error;
+            });
+    };
+
+/*
+    function updateCar(car) {
+        return $http.post("../../api/updateCar.php", {car: car})
+            .then(function (response) {
+                return response;
+            }).catch(function (error) {
+                return error;
+            });
+    };
+*/
 };
 
 angular.module("app.services", [])
