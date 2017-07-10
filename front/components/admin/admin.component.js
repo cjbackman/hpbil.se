@@ -6,11 +6,11 @@
 			AuthService.isValid()
 			.then(function (response) {
 				if (response && response.data.error) {
-					$state.go("start");
+					$state.go("login");
 				}
 			})
 			.catch(function (error) {
-				$state.go("start");
+				$state.go("login");
 			});
 
 			CarService.getCars().then(function (response) {
