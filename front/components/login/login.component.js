@@ -2,11 +2,20 @@
 	var controller = function ($state, AuthService) {
 		var ctrl = this;
 
+		ctrl.$onInit = function () {
+			AuthService.isValid()
+			.then(function (response) {
+				if (response && !response.data.error) {
+					$state.go("admin");
+				}
+			});
+		};
+
 		ctrl.formSubmit = function () {
 			AuthService.Login(ctrl.username, ctrl.password)
 			.then(function (response) {
-				if (response && response.error) {
-					ctrl.error = response.error;
+				if (response && response.data.error) {
+					ctrl.error = response.data.error;
 				}
 			});
 		};

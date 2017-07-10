@@ -50,6 +50,15 @@ body {
 	cursor: pointer;
 }
 
+
+i.fa.fa-edit {
+	color: darkorange;
+}
+
+i.fa.fa-trash {
+	color: crimson;
+}
+
 @media (orientation: portrait) {
 	.img-container {
 		display: none;

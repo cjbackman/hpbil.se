@@ -1,5 +1,5 @@
 (function () {
-	var controller = function ($state, AuthService) {
+	var controller = function ($state, AuthService, CarService) {
 		var ctrl = this;
 
 		ctrl.$onInit = function () {
@@ -12,6 +12,14 @@
 			.catch(function (error) {
 				$state.go("start");
 			});
+
+			CarService.getCars().then(function (response) {
+		      ctrl.cars = response.data;
+		    }).catch(function (response) {
+		    	if (response) {
+		    		console.warn(response.data.error);
+		    	}
+		    });
 		};
 
 		ctrl.logout = function () {
@@ -19,7 +27,7 @@
 		};
 	};
 
-	controller.$inject = ['$state', 'AuthService'];
+	controller.$inject = ['$state', 'AuthService', 'CarService'];
 
 	var component = {
 		controller: controller,

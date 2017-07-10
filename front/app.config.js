@@ -20,7 +20,7 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider) {
         }
     })
     .state("rent", {
-        url: "rent",
+        url: "/rent",
         templateUrl: "front/views/rent.html"
     })
     .state("login", {
@@ -35,7 +35,6 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push(function($localStorage) {
         return {
             'request': function(config) {
-                console.log("req");
                 if ($localStorage.currentUser) {
                     config.headers['Authorization'] = $localStorage.currentUser.token;
                 }

@@ -11,12 +11,12 @@ try {
 		echo '{}';
 	}
 	else {
-		header("403 Access Forbidden");
+		http_response_code(403);
 		echo '{"error": "Invalid token."}';	
 	}
 }
 catch (Exception $e) {
-	header("403 Access Forbidden");
+	http_response_code(403);
 	echo '{"error": "Invalid token."}';	
 }
 ?>

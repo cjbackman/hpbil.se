@@ -10,7 +10,7 @@ function authService($http, $localStorage, $state) {
     function Login(username, password) {
     	//console.log("loggin in");
 
-        return $http.post('../../backend/auth.php', { username: username, password: password })
+        return $http.post('../../api/auth.php', { username: username, password: password })
             .then(function (response) {
                 if (response.data.token) {
                     $localStorage.currentUser = { username: username, token: response.data.token };
@@ -19,6 +19,8 @@ function authService($http, $localStorage, $state) {
                 } else {
                     return response.data;
                 }
+            }).catch(function (error) {
+                return error;
             });
     }
 
@@ -28,10 +30,12 @@ function authService($http, $localStorage, $state) {
     }
 
     function isValid() {
-    	return $http.get('../../backend/isValid.php')
+    	return $http.get('../../api/isValid.php')
     		.then(function (response) {
     			return response;
-    		});
+    		}).catch(function (error) {
+                return error;
+            });
     }
 }
 
@@ -43,10 +47,12 @@ function carService ($http) {
 	return service;
 
 	function getCars () {
-		return $http.get("../../backend/getCars.php")
+		return $http.get("../../api/getCars.php")
 			.then(function (response) {
 				return response;
-			});
+			}).catch(function (error) {
+                return error;
+            });
 	};
 };
 

@@ -1,3 +1,36 @@
-Admin
+<div class="row">
+	<div class="col-md-10 col-xs-8">
+		<h2>Admin</h2>
+	</div>
+	<div class="col-md-2 col-xs-4">
+		<a ng-click="$ctrl.logout()" class="btn btn-danger" role="button">Logga ut</a>
+	</div>
+</div>
 
-<button ng-click="$ctrl.logout()">Logga ut</button>
+<div class="row">
+	<div class="col-xs-12">
+		<h3>Lägg till bil</h3>
+	</div>
+	<div class="col-md-6 col-xs-12">
+		Text
+	</div>
+	<div class="col-md-6 col-xs-12">
+		Dropzone
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-xs-8">
+		<h3>Redigera/ta bort bil</h3>
+		<table class="table table-striped">
+		    <tbody>
+		      <tr ng-repeat="car in $ctrl.cars">
+		      	<td>{{car.brand}} {{car.model}}</td>
+		        <td><i class="fa fa-edit" title="Redigera"></i></td>
+		        <td><i class="fa fa-trash" title="Ta bort"></i></td>
+		        <!-- confirmed-click="$ctrl.delCar(car.id)" ng-confirm-click="Är du säker på att du vill ta bort {{car.brand}} {{car.model}}?" -->
+		      </tr>
+		    </tbody>
+		  </table>
+	</div>
+</div>

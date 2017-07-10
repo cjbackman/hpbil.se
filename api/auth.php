@@ -13,7 +13,7 @@ if(isset($data["username"], $data["password"]))
 
 		$conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
 		if (!$conn) {
-			header("500 Internal Server Error");
+			http_response_code(500);
 			echo '{"error": "Connection failure: ' . mysqli_error($conn) . '"}';
 		} 
 		//$username = stripslashes($data["username"]); 
@@ -25,7 +25,7 @@ if(isset($data["username"], $data["password"]))
         $sql = "SELECT username, password FROM users WHERE username = '".$username."' AND  password = '".$password."'";
 		$result = mysqli_query($conn, $sql);
 		if (!$result) {
-			header("500 Internal Server Error");
+			http_response_code(500);
 			echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
 		}
 
@@ -40,12 +40,12 @@ if(isset($data["username"], $data["password"]))
         else
         {
         	mysqli_close($conn);
-        	header("400 Bad Request");
+        	http_response_code(400);
             echo '{"error": "Användarnamnet eller lösenordet är inkorrekt."}';
         } 
 	}
 else {
-	header("400 Bad Request");
+	http_response_code(400);
 	echo '{"error": "Username and password not provided."}';
 }
 ?>
