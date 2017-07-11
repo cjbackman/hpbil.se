@@ -20,27 +20,36 @@ if(isset($data["username"], $data["password"]))
 		$username = mysqli_real_escape_string($conn, $data["username"]);
 
 		//$password = stripslashes($data["password"]); 
-		$password = mysqli_real_escape_string($conn ,$data["password"]);      
+		$password = mysqli_real_escape_string($conn ,$data["password"]);
 
-        $sql = "SELECT username, password FROM users WHERE username = '".$username."' AND  password = '".$password."'";
+
+        $sql = "SELECT username, password FROM users WHERE username = '".$username."'";
+        //AND  password = '".$password."'";
 		$result = mysqli_query($conn, $sql);
 		if (!$result) {
 			http_response_code(500);
 			echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
 		}
 
-        if(mysqli_num_rows($result) > 0 )
+        if($row = $result->fetch_assoc())
         { 
-			$token = array();
-			$token['id'] = $username;
-			$token_string = JWT::encode($token, 'secret_server_key');
-			mysqli_close($conn);
-			echo '{"token": "' . $token_string . '"}';
+        	if(password_verify($password, $row['password'])) {
+				$token = array();
+				$token['id'] = $username;
+				$token_string = JWT::encode($token, 'secret_server_key');
+				mysqli_close($conn);
+				echo '{"token": "' . $token_string . '"}';
+			}
+			else {
+	        	mysqli_close($conn);
+	        	http_response_code(401);
+	            echo '{"error": "Användarnamnet eller lösenordet är inkorrekt."}';				
+			}
         }
         else
         {
         	mysqli_close($conn);
-        	http_response_code(400);
+        	http_response_code(401);
             echo '{"error": "Användarnamnet eller lösenordet är inkorrekt."}';
         } 
 	}
