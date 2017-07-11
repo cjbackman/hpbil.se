@@ -41,6 +41,7 @@ function carService ($http) {
 	var service = {};
 
 	service.getCars = getCars;
+    service.removeCar = removeCar;
 
 	return service;
 
@@ -53,8 +54,8 @@ function carService ($http) {
             });
 	};
 
-    function delCar (id) {
-        return $http.post("../../api/delCar.php", {id: id})
+    function removeCar (id) {
+        return $http.post("../../api/removeCar.php", {id: id})
             .then(function (response) {
                 return response;
             }).catch(function (error) {

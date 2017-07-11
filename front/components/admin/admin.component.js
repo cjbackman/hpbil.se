@@ -15,9 +15,9 @@
 
 			CarService.getCars().then(function (response) {
 		      ctrl.cars = response.data;
-		    }).catch(function (response) {
+		    }).catch(function (error) {
 		    	if (response) {
-		    		console.warn(response.data.error);
+		    		console.warn(error.data.error);
 		    	}
 		    });
 		};
@@ -26,9 +26,17 @@
 			AuthService.Logout();
 		};
 
-		ctrl.delCar = function (id) {
-			console.log("Delete car " + id);
-			console.log(_.find(ctrl.cars, 'id', id));
+		ctrl.removeCar = function (car) {
+			var id = car.id;
+			var idx = _.findIndex(ctrl.cars, {'id': id});
+
+			CarService.removeCar(id)
+			.then(function (response) {
+				if (idx > -1) ctrl.cars.splice(idx,1);
+				else console.warn("Car with id " + id + " not found.");
+			}).catch(function (error) {
+				console.warn(error.data.error);
+			});
 		};
 	};
 

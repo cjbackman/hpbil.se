@@ -24,7 +24,7 @@ if (!$result) {
 	echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
 }
 
-http_response_code(200)
-echo '{}';
+http_response_code(200);
+echo '{"id": ' . $data['id'] . '}';
 mysqli_close($conn);
 ?>
