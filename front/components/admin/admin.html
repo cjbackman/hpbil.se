@@ -27,7 +27,7 @@
 		      <tr ng-repeat="car in $ctrl.cars">
 		      	<td>{{car.brand}} {{car.model}}</td>
 		        <td><i class="fa fa-edit" title="Redigera"></i></td>
-		        <td><a confirmed-click="$ctrl.delCar(car.id)" ng-confirm-click="Är du säker på att du vill ta bort {{car.brand}} {{car.model}}?"><i class="fa fa-trash" title="Ta bort"></i></a></td>
+		        <td><a ng-click="$ctrl.delCar(car.id)" class="clickable"><i class="fa fa-trash" title="Ta bort"></i></a></td>
 		      </tr>
 		    </tbody>
 		  </table>

@@ -1,6 +1,6 @@
 var app = angular.module("app", [
 	"ui.router",
-	"ngStorage", 
+	"ngStorage",
 	"app.config", 
 	"app.controllers", 
 	"app.services", 

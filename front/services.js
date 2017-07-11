@@ -8,8 +8,6 @@ function authService($http, $localStorage, $state) {
     return service;
 
     function Login(username, password) {
-    	//console.log("loggin in");
-
         return $http.post('../../api/auth.php', { username: username, password: password })
             .then(function (response) {
                 if (response.data.token) {

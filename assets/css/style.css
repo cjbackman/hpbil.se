@@ -59,6 +59,10 @@ i.fa.fa-trash {
 	color: crimson;
 }
 
+.clickable {
+	cursor: pointer;
+}
+
 @media (orientation: portrait) {
 	.img-container {
 		display: none;

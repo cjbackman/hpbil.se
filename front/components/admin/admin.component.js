@@ -25,9 +25,14 @@
 		ctrl.logout = function () {
 			AuthService.Logout();
 		};
+
+		ctrl.delCar = function (id) {
+			console.log("Delete car " + id);
+			console.log(_.find(ctrl.cars, 'id', id));
+		};
 	};
 
-	controller.$inject = ['$state', 'AuthService', 'CarService'];
+	controller.$inject = ['$state','AuthService', 'CarService'];
 
 	var component = {
 		controller: controller,
