@@ -1,6 +1,10 @@
 (function () {
 	var controller = function () {
 		var ctrl = this;
+
+		ctrl.$onInit = function () {
+			ctrl.buttonText = "Lägg till bil";
+		};
 	};
 
 	var component = {
