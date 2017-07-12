@@ -38,6 +38,10 @@
 				console.warn(error.data.error);
 			});
 		};
+
+		ctrl.editCar = function (id) {
+			$state.go('addCar', { id: id });
+		};
 	};
 
 	controller.$inject = ['$state','AuthService', 'CarService'];
@@ -47,6 +51,6 @@
 		templateUrl: 'front/components/admin/admin.html'
 	};
 
-	angular.module("admin.module", [])
+	angular.module("admin.module", ["addCar.module"])
 		.component("admin", component);
 })()

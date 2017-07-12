@@ -8,15 +8,7 @@
 </div>
 
 <div class="row">
-	<div class="col-xs-12">
-		<h3>Lägg till bil</h3>
-	</div>
-	<div class="col-md-6 col-xs-12">
-		Text
-	</div>
-	<div class="col-md-6 col-xs-12">
-		Dropzone
-	</div>
+	<add-car car="$ctrl.selectedCar"></add-car>
 </div>
 
 <div class="row">
@@ -26,7 +18,7 @@
 		    <tbody>
 		      <tr ng-repeat="car in $ctrl.cars">
 		      	<td>{{car.brand}} {{car.model}}</td>
-		        <td><i class="fa fa-edit" title="Redigera"></i></td>
+		        <td><a ng-click="$ctrl.editCar(car)"><i class="fa fa-edit" title="Redigera"></i></a></td>
 		        <td><a ng-click="$ctrl.removeCar(car)" class="clickable"><i class="fa fa-trash" title="Ta bort"></i></a></td>
 		      </tr>
 		    </tbody>
