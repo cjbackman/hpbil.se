@@ -2,13 +2,13 @@
 	<div class="col-md-10 col-xs-8">
 		<h2>Admin</h2>
 	</div>
-	<div class="col-md-2 col-xs-4">
+	<div class="col-md-2 col-xs-4 text-right">
 		<a ng-click="$ctrl.logout()" class="btn btn-danger" role="button">Logga ut</a>
 	</div>
 </div>
 
 <div class="row">
-	<add-car car="$ctrl.selectedCar"></add-car>
+	<add-car selectedCar="$ctrl.selectedCar"></add-car>
 </div>
 
 <div class="row">
@@ -18,7 +18,7 @@
 		    <tbody>
 		      <tr ng-repeat="car in $ctrl.cars">
 		      	<td>{{car.brand}} {{car.model}}</td>
-		        <td><a ng-click="$ctrl.editCar(car)"><i class="fa fa-edit" title="Redigera"></i></a></td>
+		        <td><a ng-click="$ctrl.editCar(car)" class="clickable"><i class="fa fa-edit" title="Redigera"></i></a></td>
 		        <td><a ng-click="$ctrl.removeCar(car)" class="clickable"><i class="fa fa-trash" title="Ta bort"></i></a></td>
 		      </tr>
 		    </tbody>

@@ -39,8 +39,8 @@
 			});
 		};
 
-		ctrl.editCar = function (id) {
-			$state.go('addCar', { id: id });
+		ctrl.editCar = function (car) {
+			ctrl.selectedCar = car;
 		};
 	};
 

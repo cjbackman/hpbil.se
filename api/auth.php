@@ -22,13 +22,13 @@ if(isset($data["username"], $data["password"]))
 		//$password = stripslashes($data["password"]); 
 		$password = mysqli_real_escape_string($conn ,$data["password"]);
 
-
         $sql = "SELECT username, password FROM users WHERE username = '".$username."'";
         //AND  password = '".$password."'";
 		$result = mysqli_query($conn, $sql);
 		if (!$result) {
 			http_response_code(500);
-			echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
+			mysqli_close($conn);
+			echo '{"error": "Failed query: ' . mysqli_error($result) . '"}';
 		}
 
         if($row = $result->fetch_assoc())

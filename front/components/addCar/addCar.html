@@ -8,55 +8,56 @@
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="brand">Fabrikat</label>
 	    <div class="col-sm-9">
-	      <input type="text" class="form-control" id="brand" placeholder="Fabrikat">
+	      <input type="text" class="form-control" ng-model="$ctrl.car.brand" id="brand" placeholder="Fabrikat">
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="model">Modell</label>
 	    <div class="col-sm-9"> 
-	      <input type="text" class="form-control" id="model" placeholder="Modell">
+	      <input type="text" class="form-control" ng-model="$ctrl.car.model" id="model" placeholder="Modell">
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="year">Årsmodell</label>
 	    <div class="col-sm-9"> 
-	      <input type="number" class="form-control" id="year" placeholder="Årsmodell">
+	      <input type="text" class="form-control" ng-model="$ctrl.car.year" id="year" placeholder="Årsmodell">
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="milage">Mätarställning</label>
 	    <div class="col-sm-9"> 
-	      <input type="number" class="form-control" id="milage" placeholder="Mätarställning">
+	      <input type="text" class="form-control" ng-model="$ctrl.car.milage" id="milage" placeholder="Mätarställning">
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="color">Färg</label>
 	    <div class="col-sm-9"> 
-	      <input type="text" class="form-control" id="color" placeholder="Färg">
+	      <input type="text" class="form-control" ng-model="$ctrl.car.color" id="color" placeholder="Färg">
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="price">Pris</label>
 	    <div class="col-sm-9"> 
-	      <input type="number" class="form-control" id="price" placeholder="Pris">
+	      <input type="text" class="form-control" ng-model="$ctrl.car.price" id="price" placeholder="Pris">
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="misc">Övrigt</label>
 	    <div class="col-sm-9">
-	    	<textarea class="form-control" rows="5" id="misc" placeholder="Övrigt"></textarea> 
+	    	<textarea class="form-control" rows="5" ng-model="$ctrl.car.misc" id="misc" placeholder="Övrigt"></textarea> 
 	    </div>
 	  </div>
 
 	  <div class="form-group"> 
 	    <div class="col-sm-offset-3 col-sm-9">
-	      <button type="submit" class="btn btn-default">{{$ctrl.buttonText}}</button>
+	      <button type="submit" ng-click="$ctrl.addCar()" class="btn btn-success">{{$ctrl.buttonText}}</button>
+	      <button type="reset" ng-click="$ctrl.reset()" class="btn btn-danger">Rensa</button>
 	    </div>
 	  </div>
 	</form>
@@ -67,7 +68,6 @@
 	<form action="/file-upload"
 	      class="dropzone"
 	      id="my-awesome-dropzone">
-	      
 	</form>
 </div>
 
