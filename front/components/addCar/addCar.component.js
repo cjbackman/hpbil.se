@@ -3,8 +3,7 @@
 		var ctrl = this;
 
 		ctrl.$onInit = function () {
-			console.log("Janne",ctrl.editCar);
-			ctrl.buttonText = ctrl.editCar ? "Uppdatera bil" : "Lägg till bil";
+			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
 		};
 
 		ctrl.addCar = function () {
@@ -12,11 +11,11 @@
 		};
 
 		ctrl.$onChanges = function (changes) {
-			console.log(changes);
+			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
 		};
 
 		ctrl.reset = function () {
-			ctrl.editCar = undefined;
+			ctrl.car = undefined;
 		};
 
 		// ************ Handle events for dropzone ************
@@ -43,7 +42,7 @@
 
 	var component = {
 		bindings: {
-			editCar: '<'
+			car: '<'
 		},
 		controller: controller,
 		templateUrl: 'front/components/addCar/addCar.html'

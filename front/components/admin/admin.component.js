@@ -45,7 +45,6 @@
 
 		ctrl.editCar = function (car) {
 			ctrl.selectedCar = car;
-			console.log("Updating editCar to", ctrl.selectedCar);
 		};
 	};
 
