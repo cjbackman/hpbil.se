@@ -32,8 +32,12 @@
 
 			CarService.removeCar(id)
 			.then(function (response) {
-				if (idx > -1) ctrl.cars.splice(idx,1);
-				else console.warn("Car with id " + id + " not found.");
+				if (idx > -1) {
+					ctrl.cars.splice(idx,1);
+				}
+				else {
+					console.warn("Car with id " + id + " not found.");
+				}
 			}).catch(function (error) {
 				console.warn(error.data.error);
 			});
@@ -41,6 +45,7 @@
 
 		ctrl.editCar = function (car) {
 			ctrl.selectedCar = car;
+			console.log("Updating editCar to", ctrl.selectedCar);
 		};
 	};
 

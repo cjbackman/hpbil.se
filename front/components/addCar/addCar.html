@@ -2,9 +2,10 @@
 	<h3>Lägg till bil</h3>
 </div>
 
-<div class="col-md-6 col-xs-12">
-	<form class="form-horizontal" id="addcar">
+<div class="col-xs-12">
 
+  <form class="form-horizontal" id="addcar">
+	<div class="col-md-6">
 	  <div class="form-group">
 	    <label class="control-label col-sm-3" for="brand">Fabrikat</label>
 	    <div class="col-sm-9">
@@ -53,7 +54,9 @@
 	    	<textarea class="form-control" rows="5" ng-model="$ctrl.car.misc" id="misc" placeholder="Övrigt"></textarea> 
 	    </div>
 	  </div>
+	</div>
 
+	<div class="col-md-6">
 	  <div class="form-group">
 		  <label class="control-label col-sm-3" for="images">Bilder</label>
 		  <div class="col-sm-9">
@@ -67,13 +70,7 @@
 	      <button type="reset" ng-click="$ctrl.reset()" class="btn btn-danger">Rensa</button>
 	    </div>
 	  </div>
-
-	</form>
-</div>
-
-<div class="col-md-6 col-xs-12">
-	<!--
-	<div class="alert alert-info" role="alert">Ladda upp bilder genom dra och släppa dem i rutan nedan. Alternativt klicka på rutan välj de bilder du vill ladda upp.</div>
-	-->
+	</div>
+  </form>
 </div>
 
