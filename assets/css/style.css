@@ -25,6 +25,7 @@ body {
 
 	margin-top: 10px;
 	padding-top: 10px;
+	padding-bottom: 10px;
 	color: white;
 	background-color: rgba(0,0,0,0.7);
 	font-size: 16px;
@@ -34,8 +35,10 @@ body {
 
 
 .content-wrapper {
+	/*
 	height: 65vh;
 	overflow: auto;
+	*/
 }
 
 .img-container {

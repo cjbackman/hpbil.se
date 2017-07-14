@@ -56,7 +56,7 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider, dropzon
         acceptedFiles : 'image/jpeg, images/jpg, image/png',
         addRemoveLinks : true,
         autoProcessQueue : false,
-        dictDefaultMessage : "Släpp bilder här för att ladda upp, alternativt klicka här",
+        dictDefaultMessage : "Släpp bilder här för att ladda upp, alternativt klicka i rutan",
         dictFallbackMessage : "Din webbläsare stöder inte drag'n'drop av filer",
         dictFallbackText : "Använd formen nedan för att ladda upp dina filer",
         dictRemoveFile : "Ta bort fil",
