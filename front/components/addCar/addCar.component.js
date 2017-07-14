@@ -17,6 +17,27 @@
 		ctrl.reset = function () {
 			ctrl.selectedCar = undefined;
 		};
+
+		//Handle events for dropzone
+		//Visit http://www.dropzonejs.com/#events for more events
+		ctrl.dzCallbacks = {
+			'addedfile' : function(file){
+				console.log(file);
+				ctrl.newFile = file;
+			},
+			'success' : function(file, xhr){
+				console.log(file, xhr);
+			}
+		};
+		
+		
+		//Apply methods for dropzone
+		//Visit http://www.dropzonejs.com/#dropzone-methods for more methods
+		ctrl.dzMethods = {};
+		ctrl.removeNewFile = function(){
+			ctrl.dzMethods.removeFile(ctrl.newFile); //We got ctrl.newFile from 'addedfile' event callback
+		}
+
 	};
 
 	controller.$inject = ['CarService'];

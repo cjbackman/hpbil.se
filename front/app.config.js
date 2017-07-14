@@ -1,4 +1,8 @@
-var config = function($stateProvider, $urlRouterProvider, $httpProvider) {
+//Add below line at the top of your JavaScript code
+Dropzone.autoDiscover = false;
+//This will prevent Dropzone to instantiate on it's own unless you are using dropzone class for styling
+
+var config = function($stateProvider, $urlRouterProvider, $httpProvider, dropzoneOpsProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
@@ -41,6 +45,25 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider) {
                 return config;
             }
         };
+    });
+
+    //Dropzone
+    dropzoneOpsProvider.setOptions({
+        url : '/alt_upload_url',
+        paramName : 'photo',
+        maxFilesize : '10',
+        resizeWidth: 500,
+        acceptedFiles : 'image/jpeg, images/jpg, image/png',
+        addRemoveLinks : true,
+        autoProcessQueue : false,
+        dictDefaultMessage : "Släpp bilder här för att ladda upp, alternativt klicka här",
+        dictFallbackMessage : "Din webbläsare stöder inte drag'n'drop av filer",
+        dictFallbackText : "Använd formen nedan för att ladda upp dina filer",
+        dictRemoveFile : "Ta bort fil",
+        dictMaxFilesExceeded : "Du kan inte ladda upp fler filer",
+        dictCancelUpload : "Avbryt uppladdning",
+        dictCancelUploadConfirmation : "Är du säker på att du vill avbryta den här uppladdning?",
+        dictFileTooBig : "Filen är för stor ({{filesize}}MiB). Max filstorlek: {{maxFilesize}}MiB."
     });
 }
 

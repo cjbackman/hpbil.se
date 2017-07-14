@@ -1,3 +1,4 @@
+/*
 function loginController ($scope, $rootScope, $stateParams, $state, LoginService) {    
   $scope.formSubmit = function() {
     if(LoginService.login($scope.username, $scope.password)) {
@@ -13,3 +14,4 @@ function loginController ($scope, $rootScope, $stateParams, $state, LoginService
 
 angular.module("app.controllers", [])
 .controller("LoginController", loginController);
+*/
