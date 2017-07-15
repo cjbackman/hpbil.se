@@ -3,8 +3,8 @@
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+  /* position: relative; */
+  height: 100%;
 }
 body {
   /* Margin bottom by footer height */
@@ -13,6 +13,11 @@ body {
   */
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
+  height: 100%;
+}
+
+.container-wrapper {
+	min-height: 100%;
 }
 
 .footer {
@@ -22,14 +27,23 @@ body {
 	width: 100%;
 	height: 100px;
 	*/
-
+	/*
 	margin-top: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	bottom: 0;
+	*/
 	color: white;
 	background-color: rgba(0,0,0,0.7);
 	font-size: 16px;
 	text-align: center;
+
+
+	  position: relative;
+	  margin-top: -100px; /* negative value of footer height */
+	  height: 100px;
+	  clear:both;
+	  padding-top:20px;
 }
 /* ----------------------------------------------- */
 
@@ -39,6 +53,7 @@ body {
 	height: 65vh;
 	overflow: auto;
 	*/
+	padding-bottom: 100px;
 }
 
 .img-container {

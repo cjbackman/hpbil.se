@@ -7,7 +7,23 @@
 		};
 
 		ctrl.addCar = function () {
+
+			var emptyCar = {
+				"brand": "",
+				"model": "",
+				"year": "",
+				"milage": "",
+				"color": "",
+				"price": "",
+				"misc": "",
+			};
+
+			_.each(ctrl.car, function (value, key) {
+				emptyCar[key] = value;
+			});
+
 			console.log(ctrl.car);
+			console.log(emptyCar);
 		};
 
 		ctrl.$onChanges = function (changes) {
