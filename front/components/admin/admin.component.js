@@ -46,6 +46,11 @@
 		ctrl.editCar = function (car) {
 			ctrl.selectedCar = car;
 		};
+
+		ctrl.reset = function () {
+			console.log("Admin resetcar")
+			ctrl.selectedCar = undefined;
+		};
 	};
 
 	controller.$inject = ['$state','AuthService', 'CarService'];

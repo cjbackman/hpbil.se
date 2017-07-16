@@ -8,7 +8,7 @@
 
 		ctrl.addCar = function () {
 
-			var emptyCar = {
+			var completeCar = {
 				"brand": "",
 				"model": "",
 				"year": "",
@@ -19,19 +19,19 @@
 			};
 
 			_.each(ctrl.car, function (value, key) {
-				emptyCar[key] = value;
+				completeCar[key] = value;
 			});
 
 			console.log(ctrl.car);
-			console.log(emptyCar);
+			console.log(completeCar);
 		};
 
 		ctrl.$onChanges = function (changes) {
 			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
 		};
 
-		ctrl.reset = function () {
-			ctrl.car = undefined;
+		ctrl.resetCar = function () {
+			ctrl.reset();
 		};
 
 		// ************ Handle events for dropzone ************
@@ -58,7 +58,8 @@
 
 	var component = {
 		bindings: {
-			car: '<'
+			car: '<',
+			reset: '&'
 		},
 		controller: controller,
 		templateUrl: 'front/components/addCar/addCar.html'
