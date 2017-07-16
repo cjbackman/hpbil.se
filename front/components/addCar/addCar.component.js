@@ -11,10 +11,10 @@
 			var completeCar = {
 				"brand": "",
 				"model": "",
-				"year": "",
-				"milage": "",
+				"year": null,
+				"milage": null,
 				"color": "",
-				"price": "",
+				"price": null,
 				"misc": "",
 			};
 
@@ -22,8 +22,14 @@
 				completeCar[key] = value;
 			});
 
-			console.log(ctrl.car);
-			console.log(completeCar);
+			CarService.editCar(completeCar)
+			.then(function (response) {
+				ctrl.updateCars();
+				ctrl.reset();
+				ctrl.car = undefined;
+			}).catch(function (error) {
+				console.warn(error.data.error);
+			});
 		};
 
 		ctrl.$onChanges = function (changes) {
@@ -59,7 +65,8 @@
 	var component = {
 		bindings: {
 			car: '<',
-			reset: '&'
+			reset: '&',
+			updateCars: '&'
 		},
 		controller: controller,
 		templateUrl: 'front/components/addCar/addCar.html'

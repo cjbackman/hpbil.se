@@ -22,13 +22,13 @@ if (isset($data['id'])) { #update car
 		milage = ' . $data['milage'] . ',
 		price = ' . $data['price'] . ',
 		color = "' . $data['color'] . '",
-		misc = "' . $data['misc'] . '",
+		misc = "' . $data['misc'] . '"
 	WHERE id = '. $data['id'] . '';
 
 	$result = mysqli_query($conn, $sql_update);
 	if (!$result) {
 		http_response_code(500);
-		echo '{"error": "Failed query: ' . mysqli_error($result) . '"}';
+		echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
 	}	
 }
 
@@ -42,12 +42,12 @@ else { # insert new car
 			' . $data['price'] . ',
 			"' . $data['color'] . '",
 			"' . $data['misc'] . '"
-		);'
+		);';
 
 	$result = mysqli_query($conn, $sql_insert);
 	if (!$result) {
 		http_response_code(500);
-		echo '{"error": "Failed query: ' . mysqli_error($result) . '"}';
+		echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
 	}	
 }
 

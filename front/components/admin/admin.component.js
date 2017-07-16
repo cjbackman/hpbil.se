@@ -30,14 +30,13 @@
 			var id = car.id;
 			var idx = _.findIndex(ctrl.cars, {'id': id});
 
-			CarService.removeCar(id)
-			.then(function (response) {
-				if (idx > -1) {
-					ctrl.cars.splice(idx,1);
-				}
-				else {
-					console.warn("Car with id " + id + " not found.");
-				}
+			CarService.removeCar(car.id)
+			.then(function (resp) {
+				CarService.getCars().then(function (response) {
+			      ctrl.cars = response.data;
+			    }).catch(function (error) {
+			    	console.warn(error.data.error);
+			    });
 			}).catch(function (error) {
 				console.warn(error.data.error);
 			});
@@ -48,8 +47,15 @@
 		};
 
 		ctrl.reset = function () {
-			console.log("Admin resetcar")
 			ctrl.selectedCar = undefined;
+		};
+
+		ctrl.updateCars = function (cars) {
+			CarService.getCars().then(function (response) {
+		      ctrl.cars = response.data;
+		    }).catch(function (error) {
+		    	console.warn(error.data.error);
+		    });
 		};
 	};
 

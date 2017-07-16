@@ -3,6 +3,7 @@ function carService ($http) {
 
 	service.getCars = getCars;
     service.removeCar = removeCar;
+    service.editCar = editCar;
 
 	return service;
 
@@ -25,11 +26,7 @@ function carService ($http) {
     };
 
     function editCar(car) {
-
-        console.log(car);
-
-        /*
-        return $http.post("../../api/updateCar.php", car)
+        return $http.post("../../api/editCar.php", car)
         /*{
             id: car.id,
             brand: car.brand,
@@ -40,12 +37,12 @@ function carService ($http) {
             color: car.color,
             misc: car.misc
         })
+        */
             .then(function (response) {
                 return response;
             }).catch(function (error) {
                 return error;
             });
-            */
     };
 };
 
