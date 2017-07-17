@@ -6,38 +6,8 @@
 			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
 		};
 
-		ctrl.addCar = function () {
-
-			var completeCar = {
-				"brand": null,
-				"model": null,
-				"year": null,
-				"milage": null,
-				"color": null,
-				"price": null,
-				"misc": null,
-			};
-
-			_.each(ctrl.car, function (value, key) {
-				completeCar[key] = value;
-			});
-
-			CarService.editCar(completeCar)
-			.then(function (response) {
-				ctrl.updateCars();
-				ctrl.reset();
-				document.getElementById("addcarForm").reset();
-			}).catch(function (error) {
-				console.warn(error.data.error);
-			});
-		};
-
 		ctrl.$onChanges = function (changes) {
 			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
-		};
-
-		ctrl.resetCar = function () {
-			ctrl.reset();
 		};
 
 		// ************ Handle events for dropzone ************
@@ -58,6 +28,37 @@
 			ctrl.dzMethods.removeFile(ctrl.newFile); //We got ctrl.newFile from 'addedfile' event callback
 		}
 		// ************ End Dopzone ************
+
+		ctrl.addCar = function () {
+			var completeCar = {
+				"brand": null,
+				"model": null,
+				"year": null,
+				"milage": null,
+				"color": null,
+				"price": null,
+				"misc": null,
+			};
+
+			_.each(ctrl.car, function (value, key) {
+				completeCar[key] = value;
+			});
+
+			CarService.editCar(completeCar)
+			.then(function (response) {
+				ctrl.dzMethods.processQueue()
+				ctrl.updateCars();
+				ctrl.reset();
+				document.getElementById("addcarForm").reset();
+			}).catch(function (error) {
+				console.warn(error.data.error);
+			});
+		};
+
+		ctrl.resetCar = function () {
+			ctrl.reset();
+			ctrl.dzMethods.removeAllFiles();
+		};
 	};
 
 	controller.$inject = ['CarService'];

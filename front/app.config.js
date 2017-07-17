@@ -49,7 +49,7 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider, dropzon
 
     //Dropzone
     dropzoneOpsProvider.setOptions({
-        url : '/alt_upload_url',
+        url : 'api/uploadFiles.php',
         paramName : 'photo',
         maxFilesize : '10',
         resizeWidth: 500,
