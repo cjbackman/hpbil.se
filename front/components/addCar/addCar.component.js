@@ -37,7 +37,7 @@
 				"milage": null,
 				"color": null,
 				"price": null,
-				"misc": null,
+				"misc": null
 			};
 
 			_.each(ctrl.car, function (value, key) {
