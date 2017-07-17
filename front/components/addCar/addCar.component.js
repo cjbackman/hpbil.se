@@ -9,13 +9,13 @@
 		ctrl.addCar = function () {
 
 			var completeCar = {
-				"brand": "",
-				"model": "",
+				"brand": null,
+				"model": null,
 				"year": null,
 				"milage": null,
-				"color": "",
+				"color": null,
 				"price": null,
-				"misc": "",
+				"misc": null,
 			};
 
 			_.each(ctrl.car, function (value, key) {
@@ -26,7 +26,7 @@
 			.then(function (response) {
 				ctrl.updateCars();
 				ctrl.reset();
-				ctrl.car = undefined;
+				document.getElementById("addcarForm").reset();
 			}).catch(function (error) {
 				console.warn(error.data.error);
 			});
