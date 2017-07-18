@@ -11,9 +11,9 @@ $UploadFolder =  $config['upload_dir'];
  
 $counter = 0;
  
-foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
-    $temp = $_FILES["files"]["tmp_name"][$key];
-    $name = $_FILES["files"]["name"][$key];
+foreach($_FILES["photo"]["tmp_name"] as $key=>$tmp_name){
+    $temp = $_FILES["photo"]["tmp_name"][$key];
+    $name =  $_FILES["photo"]["name"][$key];
      
     if(empty($temp))
     {
@@ -23,7 +23,7 @@ foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
     $counter++;
     $UploadOk = true;
      
-    if($_FILES["files"]["size"][$key] > $totalBytes)
+    if($_FILES["photo"]["size"][$key] > $totalBytes)
     {
         $UploadOk = false;
         array_push($errors, $name." file size is larger than the 10 MB.");
@@ -36,13 +36,25 @@ foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
     }
      
     if(file_exists($UploadFolder."/".$name) == true){
-        $UploadOk = false;
-        array_push($errors, $name." file is already exist.");
+        $unique = false;
+        while (!$unique) {
+            $n = rand();
+            $namepart = explode(".", $name);
+            $tmp = $namepart[0]."_".$n.".".$namepart[1];
+            if (!file_exists($UploadFolder."/".$tmp)) {
+                $unique = true;
+                $name = $tmp;
+            }
+        }
     }
      
     if($UploadOk == true){
-        move_uploaded_file($temp,$UploadFolder."/".$name);
-        array_push($uploadedFiles, $name);
+        if(move_uploaded_file($temp,$UploadFolder."/".$name)) {
+            array_push($uploadedFiles, $name);
+        }
+        else {
+            array_push($errors, $name." could not be moved to its destination.");
+        }
     }
 }
  

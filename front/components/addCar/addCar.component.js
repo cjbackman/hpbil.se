@@ -19,6 +19,9 @@
 			},
 			'success' : function(file, xhr){
 				console.log(file, xhr);
+			},
+			'complete' : function (file) {
+				ctrl.dzMethods.removeAllFiles();
 			}
 		};
 		//Apply methods for dropzone
@@ -46,7 +49,7 @@
 
 			CarService.editCar(completeCar)
 			.then(function (response) {
-				ctrl.dzMethods.processQueue()
+				ctrl.dzMethods.processQueue();
 				ctrl.updateCars();
 				ctrl.reset();
 				document.getElementById("addcarForm").reset();
