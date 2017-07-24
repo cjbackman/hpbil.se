@@ -14,26 +14,33 @@
 		//Visit http://www.dropzonejs.com/#events for more events
 		ctrl.dzCallbacks = {
 			'addedfile' : function(file){
-				console.log(file);
 				ctrl.newFile = file;
 			},
-			'success' : function(file, xhr){
-				console.log(file, xhr);
+			'success' : function(file, response){
+				ctrl.completeCar["images"] = JSON.parse(response);
+				CarService.editCar(ctrl.completeCar)
+					.then(function (response) {
+						ctrl.updateCars();
+						ctrl.reset();
+						document.getElementById("addcarForm").reset();
+					}).catch(function (error) {
+						console.warn(error.data.error);
+					});	
 			},
-			'complete' : function (file) {
+			'complete' : function (file, response) {
 				ctrl.dzMethods.removeAllFiles();
 			}
 		};
+
 		//Apply methods for dropzone
 		//Visit http://www.dropzonejs.com/#dropzone-methods for more methods
 		ctrl.dzMethods = {};
 		ctrl.removeNewFile = function(){
 			ctrl.dzMethods.removeFile(ctrl.newFile); //We got ctrl.newFile from 'addedfile' event callback
-		}
+		};
 		// ************ End Dopzone ************
-
 		ctrl.addCar = function () {
-			var completeCar = {
+			ctrl.completeCar = {
 				"brand": null,
 				"model": null,
 				"year": null,
@@ -44,18 +51,22 @@
 			};
 
 			_.each(ctrl.car, function (value, key) {
-				completeCar[key] = value;
+				ctrl.completeCar[key] = value;
 			});
 
-			CarService.editCar(completeCar)
-			.then(function (response) {
-				ctrl.dzMethods.processQueue();
-				ctrl.updateCars();
-				ctrl.reset();
-				document.getElementById("addcarForm").reset();
-			}).catch(function (error) {
-				console.warn(error.data.error);
-			});
+			if (ctrl.dzMethods.getAllFiles().length > 0) {
+				ctrl.dzMethods.processQueue();			
+			}
+			else {
+				CarService.editCar(ctrl.completeCar)
+					.then(function (response) {
+						ctrl.updateCars();
+						ctrl.reset();
+						document.getElementById("addcarForm").reset();
+					}).catch(function (error) {
+						console.warn(error.data.error);
+					});
+			}
 		};
 
 		ctrl.resetCar = function () {

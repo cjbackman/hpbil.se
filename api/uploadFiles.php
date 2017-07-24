@@ -61,26 +61,12 @@ foreach($_FILES["photo"]["tmp_name"] as $key=>$tmp_name){
 if($counter>0){
     if(count($errors)>0)
     {
-        echo "<b>Errors:</b>";
-        echo "<br/><ul>";
-        foreach($errors as $error)
-        {
-            echo "<li>".$error."</li>";
-        }
-        echo "</ul><br/>";
+        echo json_encode($errors);
     }
      
-    if(count($uploadedFiles)>0){
-        echo "<b>Uploaded Files:</b>";
-        echo "<br/><ul>";
-        foreach($uploadedFiles as $fileName)
-        {
-            echo "<li>".$fileName."</li>";
-        }
-        echo "</ul><br/>";
-         
-        echo count($uploadedFiles)." file(s) are successfully uploaded.";
+    if(count($uploadedFiles)>0)
+    {
+        echo json_encode($uploadedFiles);
     }                               
 }
-
 ?>
