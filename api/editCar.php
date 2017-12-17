@@ -29,6 +29,19 @@ if (isset($data['id'])) { #update car
 	if (!$result) {
 		http_response_code(500);
 		echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
+	}
+	else {
+		isset($data['images']) {
+			$id = $data['id'];
+			foreach ($data['images'] as $img) {
+				$sql_insert_images = 'INSERT INTO images (car_id,filename) VALUES ('.$id.','.$img.')';
+				$result = mysqli_query($conn, $sql_insert);
+				if (!$result) {
+					http_response_code(500);
+					echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
+				}
+			}
+		}
 	}	
 }
 
@@ -45,9 +58,22 @@ else { # insert new car
 		);';
 
 	$result = mysqli_query($conn, $sql_insert);
+	$id = mysqli_insert_id();
 	if (!$result) {
 		http_response_code(500);
 		echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
+	}
+	else {
+		isset($data['images']) {
+			foreach ($data['images'] as $img) {
+				$sql_insert_images = 'INSERT INTO images (car_id,filename) VALUES ('.$id.','.$img.')';
+				$result = mysqli_query($conn, $sql_insert);
+				if (!$result) {
+					http_response_code(500);
+					echo '{"error": "Failed query: ' . mysqli_error($conn) . '"}';
+				}
+			}
+		}
 	}	
 }
 
