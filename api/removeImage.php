@@ -17,14 +17,7 @@ if (!$conn) {
 	echo '{"error": "Connection failure: ' . mysqli_error($conn) . '"}';
 } 
 
-$remove_car_query = 'UPDATE cars SET deleted = 1 WHERE id = ' . $data['id'] . '';
-$result = mysqli_query($conn, $remove_car_query);
-if (!$result) {
-	http_response_code(500);
-	echo '{"error": "Could not delete car: ' . mysqli_error($conn) . '"}';
-}
-
-$remove_imgs_query = 'UPDATE images SET deleted = 1 WHERE car_id = ' . $data['id'] . '';
+$remove_imgs_query = 'UPDATE images SET deleted = 1 WHERE id = ' . $data['id'] . '';
 $result = mysqli_query($conn, $remove_imgs_query);
 if (!$result) {
 	http_response_code(500);

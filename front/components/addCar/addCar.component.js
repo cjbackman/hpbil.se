@@ -4,10 +4,16 @@
 
 		ctrl.$onInit = function () {
 			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
+			if (ctrl.car) {
+				ctrl.getImages(ctrl.car.id);
+			}
 		};
 
 		ctrl.$onChanges = function (changes) {
 			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
+			if (ctrl.car) {
+				ctrl.getImages(ctrl.car.id);
+			}
 		};
 
 		// ************ Handle events for dropzone ************
@@ -16,8 +22,8 @@
 			'addedfile' : function(file){
 				ctrl.newFile = file;
 			},
-			'success' : function(file, response){
-				ctrl.completeCar["images"] = JSON.parse(response);
+			'successmultiple' : function(file, response){
+				ctrl.completeCar["images"] = JSON.parse(response)
 				CarService.editCar(ctrl.completeCar)
 					.then(function (response) {
 						ctrl.updateCars();
@@ -25,7 +31,7 @@
 						document.getElementById("addcarForm").reset();
 					}).catch(function (error) {
 						console.warn(error.data.error);
-					});	
+					});
 			},
 			'complete' : function (file, response) {
 				ctrl.dzMethods.removeAllFiles();
@@ -36,22 +42,25 @@
 		//Visit http://www.dropzonejs.com/#dropzone-methods for more methods
 		ctrl.dzMethods = {};
 		ctrl.removeNewFile = function(){
-			ctrl.dzMethods.removeFile(ctrl.newFile); //We got ctrl.newFile from 'addedfile' event callback
+			ctrl.dzMethods.removeFile(ctrl.newFile); // We got ctrl.newFile from 'addedfile' event callback
 		};
 		// ************ End Dopzone ************
+
 		ctrl.addCar = function () {
 			ctrl.completeCar = {
 				"brand": null,
 				"model": null,
-				"year": null,
-				"milage": null,
+				"year": "NULL",
+				"milage": "NULL",
 				"color": null,
-				"price": null,
+				"price": "NULL",
 				"misc": null
 			};
 
 			_.each(ctrl.car, function (value, key) {
-				ctrl.completeCar[key] = value;
+				numericKeys = ["year", "milage", "price"];
+				defaultValue = numericKeys.indexOf(key) > -1 ? "NULL" : null;
+				ctrl.completeCar[key] = value ? value : defaultValue;
 			});
 
 			if (ctrl.dzMethods.getAllFiles().length > 0) {
@@ -72,6 +81,28 @@
 		ctrl.resetCar = function () {
 			ctrl.reset();
 			ctrl.dzMethods.removeAllFiles();
+		};
+
+		ctrl.getImages = function (car_id) {
+			CarService.getImages(car_id)
+			.then(function (resp) {
+				ctrl.car.images = resp.data;
+			}).catch(function (error) {
+				console.warn(error.data.error);
+			});
+		}
+
+		ctrl.removeImage = function (id) {
+			CarService.removeImage(id)
+			.then(function (resp) {
+				CarService.getImages(ctrl.car.id).then(function (response) {
+			      ctrl.car.images = response.data;
+			    }).catch(function (error) {
+			    	console.warn(error.data.error);
+			    });
+			}).catch(function (error) {
+				console.warn(error.data.error);
+			});
 		};
 	};
 

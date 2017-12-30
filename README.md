@@ -1,7 +1,9 @@
-# Code base of hpbil.se
+## Installation
 
-Front: Angular 1.6.4
+In this directory, run: 
 
-API: PHP 5.6.30
+```
+php -S localhost:8000
+```
 
-DB: MySQL 5.7.18 
+Then hit (http://localhost:8000)[http://localhost:8000].

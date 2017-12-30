@@ -23,6 +23,7 @@ CREATE TABLE images (
     id INTEGER NOT NULL AUTO_INCREMENT,
     car_id int NOT NULL,
     filename VARCHAR(128),
+    deleted TINYINT(1) DEFAULT 0,
     PRIMARY KEY (id),
     FOREIGN KEY (car_id) REFERENCES cars(id)
 );

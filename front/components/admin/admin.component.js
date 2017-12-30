@@ -27,8 +27,8 @@
 		};
 
 		ctrl.removeCar = function (car) {
-			var id = car.id;
-			var idx = _.findIndex(ctrl.cars, {'id': id});
+			//var id = car.id;
+			//var idx = _.findIndex(ctrl.cars, {'id': id});
 
 			CarService.removeCar(car.id)
 			.then(function (resp) {

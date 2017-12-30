@@ -62,8 +62,16 @@ i.fa.fa-trash {
 	color: crimson;
 }
 
+i.fa.fa-times {
+	color: crimson;
+}
+
 .clickable {
 	cursor: pointer;
+}
+
+.img-list {
+	list-style-type: none;
 }
 
 @media (orientation: portrait) {
