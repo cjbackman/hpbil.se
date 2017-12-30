@@ -1,10 +1,11 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json; charset=utf-8");
 
 $config = include('config.php');
 
 $request_body = file_get_contents('php://input');
+
 $data = json_decode($request_body, true);
 
 $conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
@@ -12,6 +13,7 @@ if (!$conn) {
 	http_response_code(500);
 	echo '{"error": "Connection failure: ' . mysqli_error($conn) . '"}';
 } 
+$conn->set_charset("utf8mb4");
 
 if (isset($data['id'])) { #update car
 	$sql_update = 'UPDATE cars SET 

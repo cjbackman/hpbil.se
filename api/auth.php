@@ -16,6 +16,7 @@ if(isset($data["username"], $data["password"]))
 			http_response_code(500);
 			echo '{"error": "Connection failure: ' . mysqli_error($conn) . '"}';
 		} 
+		$conn->set_charset("utf8mb4");
 		//$username = stripslashes($data["username"]); 
 		$username = mysqli_real_escape_string($conn, $data["username"]);
 

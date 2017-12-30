@@ -8,7 +8,8 @@ $conn = new mysqli($config['host'], $config['username'], $config['password'], $c
 if (!$conn) {
 	http_response_code(500);
 	echo '{"error": "Connection failure: ' . mysqli_error($conn) . '"}';
-} 
+}
+$conn->set_charset("utf8mb4"); 
 
 $sql = "SELECT * FROM cars WHERE deleted <> 1";
 $result = mysqli_query($conn, $sql);
@@ -20,7 +21,7 @@ if (!$result) {
 $rows = array();
 while($row = mysqli_fetch_assoc($result))
 {
-    $rows[] = array_map('utf8_encode', $row);
+    $rows[] = array_map(null, $row);
 }
 
 echo json_encode($rows);
