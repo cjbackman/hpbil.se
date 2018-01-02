@@ -86,7 +86,7 @@
 		ctrl.getImages = function (car_id) {
 			CarService.getImages(car_id)
 			.then(function (resp) {
-				ctrl.car.images = resp.data;
+				ctrl.car.imageObjs = resp.data;
 			}).catch(function (error) {
 				console.warn(error.data.error);
 			});
@@ -96,7 +96,7 @@
 			CarService.removeImage(id)
 			.then(function (resp) {
 				CarService.getImages(ctrl.car.id).then(function (response) {
-			      ctrl.car.images = response.data;
+			      ctrl.car.imageObjs = response.data;
 			    }).catch(function (error) {
 			    	console.warn(error.data.error);
 			    });

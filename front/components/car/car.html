@@ -1,7 +1,7 @@
 <div>
-	<img class="img-rounded" style="width: 100%;" src="assets/img/no_img.png">
+	<img class="img-rounded" style="width: 100%;" ng-src="assets/img/{{$ctrl.car.images.length > 0 ? 'cars/' + $ctrl.car.images[0].filename : 'no_img.png'}}">
 	<p>
 		{{$ctrl.car.brand}} {{$ctrl.car.model}}<br>
-		{{$ctrl.car.price}}:-
+		{{$ctrl.numFormatter($ctrl.car.price, true)}}
 	</p>
 </div>

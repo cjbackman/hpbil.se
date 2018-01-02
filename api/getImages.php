@@ -2,6 +2,8 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
+$config = include('config.php');
+
 if (!isset($_GET['car_id'])) {
 	http_response_code(500);
 	echo '{"error": "Car id is not set."}';	
@@ -9,7 +11,6 @@ if (!isset($_GET['car_id'])) {
 
 $id = $_GET['car_id'];
 
-$config = include('config.php');
 $conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
 if (!$conn) {
 	http_response_code(500);

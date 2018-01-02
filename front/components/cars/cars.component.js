@@ -5,6 +5,15 @@
 		ctrl.$onInit = function () {
 			CarService.getCars().then(function (resp) {
 		      ctrl.cars = resp.data;
+		      _.each(ctrl.cars, function (car) {
+				CarService.getImages(car.id)
+				.then(function (response) {
+					car.images = response.data;
+				}).catch(function (error) {
+					console.warn(error.data.error);
+				});
+		      });
+		      
 		      if (ctrl.id) {
 		      	ctrl.selectedCar = ctrl.cars.filter(function (c) { return c.id === ctrl.id })[0];
 		      }

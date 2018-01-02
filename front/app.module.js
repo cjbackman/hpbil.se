@@ -7,6 +7,7 @@ var app = angular.module("app", [
 	"app.car.service", 
 	"cars.module",
 	"login.module",
-	"admin.module"
+	"admin.module",
+	"ui.carousel"
 ]);
 

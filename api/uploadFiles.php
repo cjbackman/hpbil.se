@@ -1,6 +1,7 @@
 <?php
 
 $config = include('config.php');
+
 $errors = array();
 $uploadedFiles = array();
 $extension = array("jpeg","jpg","png","gif");

@@ -75,10 +75,10 @@
 	    </div>
 	  </div>
 	  <br>
-	  <div class="col-sm-offset-3 col-sm-9" ng-if="$ctrl.car.images.length > 0">
+	  <div class="col-sm-offset-3 col-sm-9" ng-if="$ctrl.car.imageObjs.length > 0">
 	  	  <h4>Ta bort bilder</h4>
 		  <ul class="img-list">
-		  	<li ng-repeat="img in $ctrl.car.images"><a ng-click="$ctrl.removeImage(img.id)" class="clickable"><i class="fa fa-times" title="Ta bort bild"></i></a> {{img.filename}}</li>
+		  	<li ng-repeat="img in $ctrl.car.imageObjs"><a ng-click="$ctrl.removeImage(img.id)" class="clickable"><i class="fa fa-times" title="Ta bort bild"></i></a> {{img.filename}}</li>
 		  </ul>
 	  </div>
 	</div>

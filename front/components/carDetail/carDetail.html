@@ -1,11 +1,32 @@
 <div ng-if="$ctrl.car">
-	<div class="col-md-12">
-		<h3>{{$ctrl.car.model}} <small>{{$ctrl.car.price}}</small></h3>
+	<!--
+	<div class="col-md-12">		
 	</div>
-	<div class="col-md-6">
-		<img class="img-rounded" style="width: 100%;" src="assets/img/no_img.png">
+	-->
+	<div class="col-md-9">
+		<div ng-if="$ctrl.car.images.length == 0">
+			<img class="img-rounded" style="width: 100%;" ng-src="assets/img/no_img.png">
+		</div>
+		<div ng-if="$ctrl.car.images.length == 1">
+			<img class="img-rounded" style="width: 100%;" ng-src="assets/img/cars/{{$ctrl.car.images[0].filename}}">
+		</div>
+
+		<div ng-if="$ctrl.car.images.length > 1">	
+			<ui-carousel slides="$ctrl.car.images" dots="true">
+			  <carousel-item>
+			    <div class="image"><img class="img-rounded" style="width: 100%;" ng-src="assets/img/cars/{{ item.filename }}"></div>
+			  </carousel-item>
+			</ui-carousel>
+		</div>
+
 	</div>
-	<div class="col-md-6">
-		Info om bilen
+	<div class="col-md-3">
+		<h3>{{$ctrl.car.brand}} {{$ctrl.car.model}}</h3>
+		<span class="font-weight-bold">Pris:</span> {{$ctrl.numFormatter($ctrl.car.price, true)}}<br>
+		<span class="font-weight-bold">År:</span> {{$ctrl.car.year}}<br>
+		<span class="font-weight-bold">Mätarställning:</span> {{$ctrl.numFormatter($ctrl.car.milage, false)}}<br>
+		<span class="font-weight-bold">Färg:</span> {{$ctrl.car.color}}<br>
+		<br>
+		{{$ctrl.car.misc}}
 	</div>
 </div>
