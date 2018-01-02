@@ -1,6 +1,6 @@
 <?php
 
-$config = include('config.php');
+$config = include('../config/config.php');
 
 $errors = array();
 $uploadedFiles = array();

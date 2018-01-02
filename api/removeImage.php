@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$config = include('config.php');
+$config = include('../config/config.php');
 
 $request_body = file_get_contents('php://input');
 $data = json_decode($request_body, true);

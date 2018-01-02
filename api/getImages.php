@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$config = include('config.php');
+$config = include('../config/config.php');
 
 if (!isset($_GET['car_id'])) {
 	http_response_code(500);

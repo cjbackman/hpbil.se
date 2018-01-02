@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$config = include('config.php');
+$config = include('../config/config.php');
 
 $conn = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
 if (!$conn) {

@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$config = include('config.php');
+$config = include('../config/config.php');
 require_once('jwt_helper.php');
 
 $request_body = file_get_contents('php://input');
@@ -17,14 +17,10 @@ if(isset($data["username"], $data["password"]))
 			echo '{"error": "Connection failure: ' . mysqli_error($conn) . '"}';
 		} 
 		$conn->set_charset("utf8mb4");
-		//$username = stripslashes($data["username"]); 
 		$username = mysqli_real_escape_string($conn, $data["username"]);
-
-		//$password = stripslashes($data["password"]); 
-		$password = mysqli_real_escape_string($conn ,$data["password"]);
+		$password = mysqli_real_escape_string($conn, $data["password"]);
 
         $sql = "SELECT username, password FROM users WHERE username = '".$username."'";
-        //AND  password = '".$password."'";
 		$result = mysqli_query($conn, $sql);
 		if (!$result) {
 			http_response_code(500);
@@ -56,6 +52,6 @@ if(isset($data["username"], $data["password"]))
 	}
 else {
 	http_response_code(400);
-	echo '{"error": "Username and password not provided."}';
+	echo '{"error": "Användarnamn och/eller lösenord måste anges."}';
 }
 ?>

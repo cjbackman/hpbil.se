@@ -1,3 +1,5 @@
 *.DS_Store*
 password.txt
-api/config.php
+config/config.php
+config/config.prod.php
+misc/
