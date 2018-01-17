@@ -51,8 +51,9 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider, dropzon
     dropzoneOpsProvider.setOptions({
         url : 'api/uploadFiles.php',
         paramName : 'photo',
-        maxFilesize : '10',
-        resizeWidth: 500,
+        maxFilesize : 10,
+        resizeWidth: 2000,
+        resizeHeight: 1500,
         acceptedFiles : 'image/jpeg, images/jpg, image/png',
         addRemoveLinks : true,
         autoProcessQueue : false,

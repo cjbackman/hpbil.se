@@ -1,6 +1,6 @@
 <div class="col-md-12">
 	<h2>Nya bilar</h2>
-	<a href="http://www.bilbolaget.se" target="_blank">Bilbolaget</a> samarbetar med HP BIL vid nybilsförsäljning. För information om detta vänligen kontakta oss.
+	<a href="http://www.bilbolaget.nu" target="_blank">Bilbolaget</a> samarbetar med HP BIL vid nybilsförsäljning. För information om detta vänligen kontakta oss.
 </div>
 
 <div class="col-md-12">
@@ -10,9 +10,18 @@
 		<car-detail car="$ctrl.selectedCar"></car-detail>
 	</div>
 
-	<div class="row">
-		<div class="col-md-3 col-xs-6 car" ng-repeat="car in $ctrl.cars" ng-click="$ctrl.selectCar(car.id)">
-			<car car="car"></car>
+	<div ng-repeat="car in $ctrl.cars" ng-if="$index % 4 == 0" class="row">
+		<div class="col-md-3 col-xs-6 car" ng-if="$ctrl.cars.length > $index" ng-click="$ctrl.selectCar($ctrl.cars[$index].id)">
+			<car car="$ctrl.cars[$index]"></car>
+		</div>
+		<div class="col-md-3 col-xs-6 car" ng-if="$ctrl.cars.length > ($index + 1)" ng-click="$ctrl.selectCar($ctrl.cars[$index + 1].id)">
+			<car car="$ctrl.cars[$index + 1]"></car>
+		</div>
+		<div class="col-md-3 col-xs-6 car" ng-if="$ctrl.cars.length > ($index + 2)" ng-click="$ctrl.selectCar($ctrl.cars[$index + 2].id)">
+			<car car="$ctrl.cars[$index + 2]"></car>
+		</div>
+		<div class="col-md-3 col-xs-6 car" ng-if="$ctrl.cars.length > ($index + 3)" ng-click="$ctrl.selectCar($ctrl.cars[$index + 3].id)">
+			<car car="$ctrl.cars[$index + 3]"></car>
 		</div>
 	</div>
 </div>

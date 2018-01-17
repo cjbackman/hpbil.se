@@ -8,7 +8,7 @@
 			<img class="img-rounded" style="width: 100%;" ng-src="assets/img/no_img.png">
 		</div>
 		<div ng-if="$ctrl.car.images.length == 1">
-			<img class="img-rounded" style="width: 100%;" ng-src="assets/img/cars/{{$ctrl.car.images[0].filename}}">
+			<img class="img-rounded img-responsive" style="width: 100%;" ng-src="assets/img/cars/{{$ctrl.car.images[0].filename}}">
 		</div>
 
 		<div ng-if="$ctrl.car.images.length > 1">	
@@ -24,7 +24,7 @@
 		<h3>{{$ctrl.car.brand}} {{$ctrl.car.model}}</h3>
 		<span class="font-weight-bold">Pris:</span> {{$ctrl.numFormatter($ctrl.car.price, true)}}<br>
 		<span class="font-weight-bold">År:</span> {{$ctrl.car.year}}<br>
-		<span class="font-weight-bold">Mätarställning:</span> {{$ctrl.numFormatter($ctrl.car.milage, false)}}<br>
+		<span class="font-weight-bold">Mätarställning:</span> {{$ctrl.numFormatter($ctrl.car.milage, false)}} mil<br>
 		<span class="font-weight-bold">Färg:</span> {{$ctrl.car.color}}<br>
 		<br>
 		{{$ctrl.car.misc}}
