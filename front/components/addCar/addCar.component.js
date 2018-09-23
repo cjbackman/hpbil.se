@@ -3,14 +3,14 @@
 		var ctrl = this;
 
 		ctrl.$onInit = function () {
-			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
+			ctrl.buttonText = ctrl.car ? "Uppdatera" : "Spara";
 			if (ctrl.car) {
 				ctrl.getImages(ctrl.car.id);
 			}
 		};
 
 		ctrl.$onChanges = function (changes) {
-			ctrl.buttonText = ctrl.car ? "Uppdatera bil" : "Lägg till bil";
+			ctrl.buttonText = ctrl.car ? "Uppdatera" : "Spara";
 			if (ctrl.car) {
 				ctrl.getImages(ctrl.car.id);
 			}
