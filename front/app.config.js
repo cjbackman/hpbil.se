@@ -58,7 +58,7 @@ var config = function($stateProvider, $urlRouterProvider, $httpProvider, dropzon
         addRemoveLinks : true,
         autoProcessQueue : false,
         uploadMultiple: true,
-        dictDefaultMessage : "Släpp bilder här för att ladda upp, alternativt klicka i rutan",
+        dictDefaultMessage : "Släpp bilder här för att ladda upp, alternativt klicka i rutan. <br><br><b>OBS! Max 2 bilder åt gången.</b>",
         dictFallbackMessage : "Din webbläsare stöder inte drag'n'drop av filer",
         dictFallbackText : "Använd formen nedan för att ladda upp dina filer",
         dictRemoveFile : "Ta bort fil",

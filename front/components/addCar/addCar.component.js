@@ -29,6 +29,7 @@
 						ctrl.updateCars();
 						ctrl.reset();
 						document.getElementById("addcarForm").reset();
+						location.reload();
 					}).catch(function (error) {
 						console.warn(error.data.error);
 					});
@@ -64,7 +65,7 @@
 			});
 
 			if (ctrl.dzMethods.getAllFiles().length > 0) {
-				ctrl.dzMethods.processQueue();			
+				ctrl.dzMethods.processQueue();
 			}
 			else {
 				CarService.editCar(ctrl.completeCar)
@@ -72,6 +73,7 @@
 						ctrl.updateCars();
 						ctrl.reset();
 						document.getElementById("addcarForm").reset();
+						location.reload();
 					}).catch(function (error) {
 						console.warn(error.data.error);
 					});
@@ -98,7 +100,7 @@
 				CarService.getImages(ctrl.car.id).then(function (response) {
 			      ctrl.car.imageObjs = response.data;
 			    }).catch(function (error) {
-			    	console.warn(error.data.error);
+					console.warn(error.data.error);
 			    });
 			}).catch(function (error) {
 				console.warn(error.data.error);

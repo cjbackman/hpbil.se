@@ -1,6 +1,6 @@
 ## Installation
 
-In this directory, run: 
+In this directory, run:
 
 ```
 php -S localhost:8000

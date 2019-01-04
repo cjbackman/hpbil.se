@@ -12,11 +12,11 @@ $conn = new mysqli($config['host'], $config['username'], $config['password'], $c
 if (!$conn) {
 	http_response_code(500);
 	echo '{"error": "Connection failure: ' . mysqli_error($conn) . '"}';
-} 
+}
 $conn->set_charset("utf8mb4");
 
 if (isset($data['id'])) { #update car
-	$sql_update = 'UPDATE cars SET 
+	$sql_update = 'UPDATE cars SET
 		brand = "'. $data['brand'] .'",
 		model = "' . $data['model'] . '",
 		year = ' . $data['year'] . ',
@@ -43,11 +43,11 @@ if (isset($data['id'])) { #update car
 				}
 			}
 		}
-	}	
+	}
 }
 
 else { # insert new car
-	$sql_insert = 'INSERT INTO cars (brand, model, year, milage, price, color, misc) 
+	$sql_insert = 'INSERT INTO cars (brand, model, year, milage, price, color, misc)
 		VALUES(
 			"'. $data['brand'] .'",
 			"' . $data['model'] .'",
@@ -75,7 +75,7 @@ else { # insert new car
 				}
 			}
 		}
-	}	
+	}
 }
 
 mysqli_close($conn);
